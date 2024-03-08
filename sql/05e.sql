@@ -27,6 +27,6 @@ from (
     join film f2 on (fc2.film_id = f2.film_id)
     where f1.title = 'AMERICAN CIRCUS'
     group by f2.title
-) as category_count
+) as b
 where count > 1
 order by title; 

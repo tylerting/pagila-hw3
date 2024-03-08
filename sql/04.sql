@@ -14,7 +14,7 @@ except
 select first_name, last_name from actor
 join film_actor using (actor_id)
 join film using (film_id)
-joinfilm_category using (film_id)
+join film_category using (film_id)
 join category using (category_id)
 where category.name = 'Horror'
 order by last_name;

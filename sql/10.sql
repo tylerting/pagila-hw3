@@ -11,9 +11,9 @@
  */
 select *
 from (
-select customer_id, first_name || ' ' || last_name as name, sum(amount) as payment_sum, ntile(100) over (order by sum(amount)) as percentile
+select customer_id, first_name || ' ' || last_name as name, sum(amount) as payment_sum, ntile(100) over (order by sum(amount)) as percentiles
 from customer
 join payment using (customer_id)
 group by 1,2 ) t
-where percentile >= 90
+where percentiles >= 90
 order by 2;
