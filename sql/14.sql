@@ -7,3 +7,15 @@
  * Note that in the last query, we were ranking films by the total amount of payments made,
  * but in this query, you are ranking by the total number of times the movie has been rented (and ignoring the price).
  */
+select name, title, "total rentals"
+from (
+select name, title, count(*) as "total rentals", rank() over (partition by name order by count(*) desc, title desc) as rank
+from category
+join film_category using (category_id)
+join film using (film_id)
+join inventory using (film_id)
+join rental using (inventory_id)
+group by 1,2
+) t
+where rank <= 5
+order by 1, 3 desc, 2;

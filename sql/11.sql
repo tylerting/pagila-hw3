@@ -11,3 +11,15 @@
  * All of the subsequent problems in this homework can be solved with LATERAL JOINs
  * (or slightly less conveniently with subqueries).
  */
+select first_name, last_name, title, rental_date
+from customer
+left join lateral (
+select rental_id, rental_date, title
+from rental
+join inventory using (inventory_id)
+join film using (film_id)
+where rental.customer_id = customer.customer_id
+order by 2 desc
+limit 1
+) t on true
+order by 2;
