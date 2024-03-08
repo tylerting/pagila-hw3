@@ -14,6 +14,5 @@ join film_actor using (actor_id)
 join film using (film_id)
 join film_category using (film_id)
 join category using (category_id)
-where name = 'Documentary'
-and rating = 'G'
+where name = 'Documentary' and rating = 'G'
 group by title;

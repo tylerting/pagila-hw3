@@ -12,14 +12,14 @@
  * (or slightly less conveniently with subqueries).
  */
 select first_name, last_name, title, rental_date
-from customer c
+from customer
 left join lateral (
-select rental_id, rental_date, inventory_id
+select rental_id, rental_date, title
 from rental
-where customer_id = c.customer_id
-order by rental_date desc
-limit 1
-) t on true
 join inventory using (inventory_id)
 join film using (film_id)
-order by c.last_name;
+where rental.customer_id = customer.customer_id
+order by 2 desc
+limit 1
+) t on true
+order by last_name;

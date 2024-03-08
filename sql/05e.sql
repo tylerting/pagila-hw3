@@ -18,15 +18,12 @@
  * ```
  * This problem should be solved by a self join on the "film_category" table.
  */
-select title
-from (
-    select f2.title, count(f2.title)
-    from film f1
-    join film_category fc1 on (f1.film_id = fc1.film_id)
-    join film_category fc2 on (fc1.category_id = fc2.category_id)
-    join film f2 on (fc2.film_id = f2.film_id)
-    where f1.title = 'AMERICAN CIRCUS'
-    group by f2.title
-) as b
-where count > 1
-order by title; 
+select f1.title
+from film f1
+join film_category fc1 using (film_id)
+join film_category fc2 on fc1.category_id = fc2.category_id
+join film f2 on fc2.film_id = f2.film_id
+where f2.title = 'AMERICAN CIRCUS'
+group by f1.title
+having count(f1.title) >= 2
+order by 1;
