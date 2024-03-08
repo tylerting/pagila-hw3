@@ -6,13 +6,10 @@
  * HINT:
  * This can be solved with a self join on the film_actor table.
  */
-select title
-from film 
-join film_actor  using (film_id)
-where actor_id in (
-select actor_id
-from film_actor
-join film using (film_id)
-where title = 'AMERICAN CIRCUS'
-)
+select f1.title
+from film f1
+join film_actor fa1  using (film_id)
+join film_actor fa2 using (actor_id)
+join film f2 using (film_id)
+where f2.title = 'AMERICAN CIRCUS'
 order by 1;
