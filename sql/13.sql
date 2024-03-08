@@ -16,8 +16,8 @@ from actor
 join film_actor using (actor_id)
 join film using (film_id)
 join inventory using (film_id)
-join payment using (rental_id)
 join rental using (inventory_id)
+join payment using (rental_id)
 group by 1,2,3,4,5
 order by 1,6
 ) b

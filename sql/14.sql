@@ -15,7 +15,7 @@ join film_category using (category_id)
 join film using (film_id)
 join inventory using (film_id)
 join rental using (inventory_id)
-group by 1,2
+group by name, title
 ) t
 where rank <= 5
-order by 1, 3 desc, 2;
+order by name, "total rentals" desc, title;

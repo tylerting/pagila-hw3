@@ -4,7 +4,7 @@
  * 2. but that have never appeared in any movie in the "Horror" category.
  */
 select distinct first_name, last_name
-from actor a
+from actor 
 join film_actor using (actor_id)
 join film using (film_id)
 join film_category using (film_id)
