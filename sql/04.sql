@@ -16,6 +16,6 @@ from actor
 join film_actor using (actor_id)
 join film using (film_id)
 join film_category using (film_id)
-joincategory using (category_id)
+join category using (category_id)
 where name = 'Horror'
 order by last_name;

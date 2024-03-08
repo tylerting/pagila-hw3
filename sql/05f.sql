@@ -22,4 +22,4 @@ join film f2 on fc2.film_id = f2.film_id
 where f2.title = 'AMERICAN CIRCUS'
 group by 1
 having count(f1.title) >= 2
-order by f1.title;
+order by 1;
